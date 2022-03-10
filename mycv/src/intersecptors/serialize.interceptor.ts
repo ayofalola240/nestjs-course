@@ -11,6 +11,7 @@ import { map } from 'rxjs';
 interface ClassConstructor {
   new (...args: any[]): {};
 }
+// Note: decorators are just functions
 export function Serialize(dto: ClassConstructor) {
   return UseInterceptors(new SerializeInterceptor(dto));
 }
