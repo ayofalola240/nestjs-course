@@ -1,5 +1,5 @@
 import { CurrentUser } from './decorators/current-user.decorator';
-import { Serialize } from './../intersecptors/serialize.interceptor';
+import { Serialize } from '../interceptors/serialize.interceptor';
 import { UpdateUserDto } from './dto/update-user.dto';
 import {
   Body,
@@ -21,7 +21,7 @@ import { UserDto } from './dto/user.dto';
 import { AuthService } from './auth.service';
 // import { CurrentUserInterceptor } from './intersectors/current-user.interceptor';
 import { User } from './user.entity';
-import { AuthGuard } from 'src/guards/auth.guards';
+import { AuthGuard } from 'src/guards/auth.guard';
 
 @Controller('auth')
 @Serialize(UserDto)
@@ -71,7 +71,7 @@ export class UsersController {
   @Get('/:id')
   async findUser(@Param('id') id: string) {
     // console.log('Handler is running');
-    const user = await this.usersService.findeOne(parseInt(id));
+    const user = await this.usersService.findOne(parseInt(id));
     if (!user) {
       throw new NotFoundException('user not found');
     }
